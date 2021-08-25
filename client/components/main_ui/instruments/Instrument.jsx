@@ -9,6 +9,7 @@ import * as Tone from 'tone';
 import '../../../styles/main_ui/SeqLights.css';
 import actions from '../../../redux/actions/index';
 import InstMixMeter from '../../mix_panel/InstMixMeter.jsx';
+import InstChannel from '../../mix_panel/InstChannel.jsx';
 
 const Instrument = ({ name }) => {
   const dispatch = useDispatch();
@@ -45,28 +46,8 @@ const Instrument = ({ name }) => {
 
   const time = Tone.Time(0.1);
 
-  // create a div for each step in sequencer
-  // eventually make spans into buttons? airbnb
-  return (
-    <div>
-      <button
-        type="button"
-        onClick={() => sound.start(time)}
-      >
-        TEST
-      </button>
-      {steps.map((step, i) => (
-        <span
-          key={step.step}
-          id={`step-0${i + 1}-${name}`}
-          onClick={active}
-          className="seq-step"
-          value={`${name}`}
-          sound={sound}
-        >
-          {step.step}
-        </span>
-      ))}
+  const Controls = (view) => (
+    <div id={`controls-${view}`}>
       <input
         type="range"
         min="-100"
@@ -109,8 +90,39 @@ const Instrument = ({ name }) => {
       >
         M
       </button>
-      <InstMixMeter inst={name} />
     </div>
+  );
+
+  // create a div for each step in sequencer
+  // eventually make spans into buttons? airbnb
+  return (
+    <>
+      <div className="main-inst">
+        <button
+          type="button"
+          onClick={() => sound.start(time)}
+        >
+          TEST
+        </button>
+        {steps.map((step, i) => (
+          <span
+            key={step.step}
+            id={`step-0${i + 1}-${name}`}
+            onClick={active}
+            className="seq-step"
+            value={`${name}`}
+            sound={sound}
+          >
+            {step.step}
+          </span>
+        ))}
+        {Controls('main-controls')}
+      </div>
+      <div className="mix-panel-inst hidden">
+        <InstMixMeter inst={name} />
+        <InstChannel controls={Controls} />
+      </div>
+    </>
   );
 };
 

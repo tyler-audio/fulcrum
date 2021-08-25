@@ -8,6 +8,7 @@ const configLoop = (bpm, sounds, length) => {
 
   const repeat = (time) => {
     const currentStep = index % (length * 16);
+    const currentLight = index % 16;
     const steps = document.querySelectorAll('.seq-step');
     steps.forEach((step) => {
       const file = step.attributes[2].value;
@@ -18,7 +19,7 @@ const configLoop = (bpm, sounds, length) => {
 
     const lights = document.querySelectorAll('.seq-light');
     lights.forEach((light) => {
-      if (light.id === `light-${currentStep}`) {
+      if (light.id === `light-${currentLight}`) {
         light.classList.add('on');
       } else {
         light.classList.remove('on');

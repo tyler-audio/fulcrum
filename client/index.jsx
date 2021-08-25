@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
+import './styles/App.css';
 import store from './redux/store.js';
 import App from './components/App.jsx';
 

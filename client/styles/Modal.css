@@ -33,15 +33,34 @@
   color: black;
 }
 
+/* ======== MASTER FADER MODAL ======== */
+
+#master-fader-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 2px solid black;
+  border-radius: 4px;
+  z-index: 101;
+  background-color: white;
+  width: 200px;
+  height: 50px;
+  color: black;
+}
+
 /* ======== GENERIC MODAL ======== */
 
 #add-inst-modal.active,
-#settings-modal.active {
+#settings-modal.active,
+#master-fader-modal.active {
   transform: translate(-50%, -50%) scale(1);
 }
 
 #add-inst-overlay,
-#settings-overlay {
+#settings-overlay,
+#master-fader-overlay {
   position: fixed;
   opacity: 0;
   transition: 200ms ease-in-out;
@@ -55,7 +74,8 @@
 }
 
 #add-inst-overlay.active,
-#settings-overlay.active {
+#settings-overlay.active,
+#master-fader-overlay.active {
   opacity: 1;
   pointer-events: all;
 }
