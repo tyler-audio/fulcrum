@@ -1,0 +1,17 @@
+.on {
+  color: rgb(240, 191, 32);
+}
+
+.active {
+  color: green;
+}
+
+.main-master-meter {
+  width: 200px;
+  transform: rotate(270deg);
+  float: right;
+}
+
+.play-disabled {
+  pointer-events: none;
+}
