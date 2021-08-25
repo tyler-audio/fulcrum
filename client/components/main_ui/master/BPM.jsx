@@ -1,5 +1,4 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable import/extensions */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // import * as Tone from 'tone';
@@ -9,12 +8,13 @@ import actions from '../../../redux/actions/index';
 const BPM = () => {
   const dispatch = useDispatch();
   const bpm = useSelector((state) => state.bpm);
-
+  // const [bpm, setBpm] = useState(60);
   // let click;
   // let drag;
   // let isClicked = false;
 
   // let elapsedTime = 0;
+  // let tappedBPM;
   // let tapValues = [];
   // let average;
 
@@ -26,8 +26,10 @@ const BPM = () => {
   //   return sum / values.length;
   // };
 
+  // let bpm = 120;
+
   return (
-    <div>
+    <>
       <div>
         {/* // onMouseDown={(e) => {
         //   isClicked = true;
@@ -46,6 +48,7 @@ const BPM = () => {
           }}
           id="bpm"
           type="range"
+          value={bpm}
           min="60"
           max="200"
           step="1"
@@ -55,28 +58,20 @@ const BPM = () => {
         type="button"
         onMouseDown={() => {
           Tone.Transport.start();
-          let tappedBPM = (60 / (Tone.Transport.seconds - elapsedTime)).toFixed(0);
-          tappedBPM = Number(tappedBPM);
-          dispatch(actions.bpm(tappedBPM));
-          // if (Number.isFinite(tappedBPM)) {
-          //   tapValues.push(tappedBPM);
-          // }
-          // if (tapValues.length > 4) {
-          //   tapValues = tapValues.slice(tapValues.length - 4);
-          // }
-          // average = getAverageBPM(tapValues).toFixed(2);
-          // average = Number(average);
-          // console.log('avg', typeof average);
-          // console.log('val', tapValues);
+          let tapBpm = (60 / (Tone.Transport.seconds - elapsedTime)).toFixed(0);
+          tapBpm = Number(tapBpm);
+          setBpm(tapBpm);
+          console.log(bpm);
           elapsedTime = Tone.Transport.seconds;
         }}
         // onMouseUp={() => {
-        //   console.log(average);
+        //   dispatch(actions.bpm(tappedBPM));
+        //   console.log(tappedBPM);
         // }}
       >
         TAP
       </button> */}
-    </div>
+    </>
   );
 };
 

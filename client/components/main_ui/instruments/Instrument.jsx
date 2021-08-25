@@ -48,7 +48,19 @@ const Instrument = ({ name }) => {
 
   const Controls = (view) => (
     <div id={`controls-${view}`}>
-      <input
+      <webaudio-knob
+        onMouseOver={(e) => e.target.addEventListener('input', () => {
+          channel.set({
+            volume: e.target.value,
+          });
+        })}
+        src="./knobs/Vintage_Knob.png"
+        min="-32"
+        max="0"
+        defvalue="-6"
+        diameter="64"
+      />
+      {/* <input
         type="range"
         min="-100"
         max="0"
@@ -58,8 +70,21 @@ const Instrument = ({ name }) => {
             volume: e.target.value,
           });
         }}
+      /> */}
+      <webaudio-knob
+        onMouseOver={(e) => e.target.addEventListener('input', () => {
+          channel.set({
+            pan: e.target.value,
+          });
+        })}
+        src="./knobs/Vintage_Knob.png"
+        min="-1"
+        max="1"
+        step="0.1"
+        defvalue="0"
+        diameter="64"
       />
-      <input
+      {/* <input
         type="range"
         min="-1"
         max="1"
@@ -69,7 +94,7 @@ const Instrument = ({ name }) => {
             pan: e.target.value,
           });
         }}
-      />
+      /> */}
       <button
         type="button"
         onClick={() => {
