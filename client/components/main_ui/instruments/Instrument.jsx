@@ -47,7 +47,7 @@ const Instrument = ({ name }) => {
   const time = Tone.Time(0.1);
 
   const Controls = (view) => (
-    <div id={`controls-${view}`}>
+    <div className={`controls-${view}`}>
       <webaudio-knob
         onMouseOver={(e) => e.target.addEventListener('input', () => {
           channel.set({
@@ -60,17 +60,6 @@ const Instrument = ({ name }) => {
         defvalue="-6"
         diameter="64"
       />
-      {/* <input
-        type="range"
-        min="-100"
-        max="0"
-        step="0.5"
-        onChange={(e) => {
-          channel.set({
-            volume: e.target.value,
-          });
-        }}
-      /> */}
       <webaudio-knob
         onMouseOver={(e) => e.target.addEventListener('input', () => {
           channel.set({
@@ -84,17 +73,6 @@ const Instrument = ({ name }) => {
         defvalue="0"
         diameter="64"
       />
-      {/* <input
-        type="range"
-        min="-1"
-        max="1"
-        step="0.1"
-        onChange={(e) => {
-          channel.set({
-            pan: e.target.value,
-          });
-        }}
-      /> */}
       <button
         type="button"
         onClick={() => {

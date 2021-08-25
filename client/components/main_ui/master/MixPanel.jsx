@@ -4,14 +4,23 @@ const MixPanel = () => (
   <button
     type="button"
     onClick={() => {
-      const mainUI = document.querySelector('.main-inst');
-      const mixPanel = document.querySelector('.mix-panel-inst');
-      if (mixPanel.classList.contains('hidden')) {
-        mixPanel.classList.remove('hidden');
-        mainUI.classList.add('hidden');
-      } else if (mainUI.classList.contains('hidden')) {
-        mainUI.classList.remove('hidden');
-        mixPanel.classList.add('hidden');
+      const mainInst = document.querySelector('.main-inst');
+      const mixPanelInst = document.querySelector('.mix-panel-inst');
+      const sampleInst = document.querySelector('.sampler-inst');
+      const mixPanelSampler = document.querySelector('.mix-panel-sampler');
+
+      if (mixPanelInst.classList.contains('hidden') && mixPanelSampler.classList.contains('hidden')) {
+        mixPanelInst.classList.remove('hidden');
+        mixPanelSampler.classList.remove('hidden');
+
+        mainInst.classList.add('hidden');
+        sampleInst.classList.add('hidden');
+      } else if (mainInst.classList.contains('hidden') && sampleInst.classList.contains('hidden')) {
+        mainInst.classList.remove('hidden');
+        sampleInst.classList.remove('hidden');
+
+        mixPanelInst.classList.add('hidden');
+        mixPanelSampler.classList.add('hidden');
       }
     }}
   >

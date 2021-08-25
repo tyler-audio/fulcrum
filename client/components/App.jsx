@@ -5,6 +5,7 @@ import * as Tone from 'tone';
 
 import actions from '../redux/actions/index';
 import Main from './main_ui/main.jsx';
+import Test from './samplerTEST.jsx';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const App = () => {
       <div>FULCRUM_TITLE</div>
       <button type="button" onClick={() => Tone.start()}>START</button>
       <Main />
+      {/* <Test /> */}
     </div>
   );
 };

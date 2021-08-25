@@ -12,6 +12,7 @@ import actions from '../../../redux/actions/index';
 const AddInstrument = () => {
   const dispatch = useDispatch();
   const [selectedType, setSelectedType] = useState('');
+  const [instType, setInstType] = useState('');
 
   const handleModal = () => {
     const modal = document.querySelector('#add-inst-modal');
@@ -48,6 +49,7 @@ const AddInstrument = () => {
                         const selType = document.querySelector('#selected-type');
                         selType.innerHTML = e.target.innerHTML;
                         setSelectedType(e.target.innerHTML);
+                        setInstType(type);
                       }}
                       key={i}
                     >
@@ -64,7 +66,13 @@ const AddInstrument = () => {
               <li
                 key={file}
                 className="add-inst-file"
-                onClick={(e) => dispatch(actions.instruments(e.target.innerHTML))}
+                onClick={(e) => {
+                  if (instType === 'drums') {
+                    dispatch(actions.instruments(e.target.innerHTML));
+                  } else {
+                    dispatch(actions.samplers(e.target.innerHTML));
+                  }
+                }}
               >
                 {file}
               </li>
