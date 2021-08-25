@@ -1,11 +1,10 @@
 /* eslint-disable no-param-reassign */
-const initialState = {};
+const initialState = 1;
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'SET_PATTERN':
-      state[action.instName] = action.pattern;
-      return state;
+      return action.payload;
     default:
       return state;
   }

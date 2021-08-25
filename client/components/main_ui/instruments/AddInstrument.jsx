@@ -2,8 +2,9 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import '../../../styles/main_ui/Instruments/AddInstrument.css';
+import '../../../styles/Modal.css';
 
 import data from '../../../lib/Inst/index';
 import actions from '../../../redux/actions/index';

@@ -12,6 +12,6 @@
   float: right;
 }
 
-.play-disabled {
+.disabled {
   pointer-events: none;
 }

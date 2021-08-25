@@ -3,11 +3,11 @@
 // import { useSelector } from 'react-redux';
 import * as Tone from 'tone';
 
-const configLoop = (bpm, sounds) => {
+const configLoop = (bpm, sounds, length) => {
   let index = 0;
 
   const repeat = (time) => {
-    const currentStep = index % 16;
+    const currentStep = index % (length * 16);
     const steps = document.querySelectorAll('.seq-step');
     steps.forEach((step) => {
       const file = step.attributes[2].value;

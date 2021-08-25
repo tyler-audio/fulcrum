@@ -1,7 +1,4 @@
-export default (pattern, instName) => ({
+export default (pattern) => ({
   type: 'SET_PATTERN',
-  payload: {
-    instName,
-    pattern,
-  },
+  payload: pattern,
 });

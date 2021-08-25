@@ -1,15 +1,15 @@
 import bpm from './bpm';
 import patterns from './patterns';
 import instruments from './instruments';
-import volume from './volume';
 import sounds from './sounds';
+import analysers from './analysers';
 
 const actions = {
   bpm,
   patterns,
   instruments,
-  volume,
   sounds,
+  analysers,
 };
 
 export default actions;

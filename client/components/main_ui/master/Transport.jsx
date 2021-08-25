@@ -4,12 +4,14 @@ import { useSelector } from 'react-redux';
 import * as Tone from 'tone';
 
 import configLoop from '../Looper';
-import { masterMeter, mixMeter } from '../../Meters.js';
+import volMeters from '../../Meters.js';
 import MainMasterFader from './MainMasterFader.jsx';
 
 const Transport = () => {
   const sounds = useSelector((state) => state.sounds);
   const bpm = useSelector((state) => state.bpm);
+  const instAnalysers = useSelector((state) => state.analysers);
+  const length = useSelector((state) => state.patterns);
 
   const analyser = sounds.context.createAnalyser();
   const sampleBuffer = new Float32Array(analyser.fftSize);
@@ -17,31 +19,6 @@ const Transport = () => {
   const volume = new Tone.Volume({ volume: 0 });
   // const split = new Tone.Split();
   Tone.Destination.chain(volume, limiter, analyser);
-
-  // const masterMeter = () => {
-  //   const computeLevel = (value) => {
-  //     const meters = document.querySelectorAll('.main-master-meter');
-  //     meters.forEach((meter) => {
-  //       // eslint-disable-next-line no-param-reassign
-  //       meter.value = Number.isFinite(value) ? value : meter.min;
-  //     });
-  //   };
-
-  //   const loop = () => {
-  //     analyser.getFloatTimeDomainData(sampleBuffer);
-
-  //     let peak = 0;
-  //     for (let i = 0; i < sampleBuffer.length; i += 1) {
-  //       const power = sampleBuffer[i] ** 2;
-  //       peak = Math.max(power, peak);
-  //     }
-  //     const peakDb = 10 * Math.log10(peak);
-  //     computeLevel(peakDb);
-
-  //     requestAnimationFrame(loop);
-  //   };
-  //   loop();
-  // };
 
   let isPlaying = false;
 
@@ -55,10 +32,13 @@ const Transport = () => {
           type="button"
           onClick={(e) => {
             if (!isPlaying) {
-              e.target.classList.add('play-disabled');
+              e.target.classList.add('disabled');
             }
-            configLoop(bpm, sounds);
-            masterMeter(analyser, sampleBuffer);
+            configLoop(bpm, sounds, length);
+            volMeters.masterMeter(analyser, sampleBuffer);
+            instAnalysers.forEach((a) => {
+              volMeters.mixMeter(a.analyser, a.sampleBuffer, a.instrument);
+            });
             isPlaying = true;
           }}
         >
@@ -69,10 +49,12 @@ const Transport = () => {
         <button
           type="button"
           onClick={() => {
-            Tone.Transport.pause();
+            Tone.Transport.stop();
             Tone.Transport.cancel();
             const playBtn = document.querySelector('#main-transport-play');
             playBtn.classList.remove('play-disabled');
+            const lights = document.querySelectorAll('.seq-light');
+            lights.forEach((light) => light.classList.remove('on'));
             isPlaying = false;
           }}
         >

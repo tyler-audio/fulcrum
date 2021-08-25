@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import * as Tone from 'tone';
+// import * as Tone from 'tone';
 
 import actions from '../../../redux/actions/index';
 
@@ -14,7 +14,7 @@ const BPM = () => {
   // let drag;
   // let isClicked = false;
 
-  let elapsedTime = 0;
+  // let elapsedTime = 0;
   // let tapValues = [];
   // let average;
 

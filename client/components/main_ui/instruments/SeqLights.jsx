@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import React from 'react';
 
-import '../../styles/main_ui/SeqLights.css';
+import '../../../styles/main_ui/SeqLights.css';
 
 const SeqLights = () => {
   const lights = [];
@@ -16,13 +16,13 @@ const SeqLights = () => {
   return (
     <div>
       {lights.map((light, i) => (
-        <div
+        <span
           key={light.id}
           id={`light-${i}`}
           className="seq-light"
         >
-          {`light${i + 1}`}
-        </div>
+          {i + 1}
+        </span>
       ))}
     </div>
   );

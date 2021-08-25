@@ -15,22 +15,18 @@ const Instrument = ({ name }) => {
 
   const steps = [];
 
-  for (let i = 0; i < 16; i += 1) {
+  for (let i = 0; i < 64; i += 1) {
     steps.push({
       step: i + 1,
     });
   }
 
-  const pattern = [];
   const active = (e) => {
     if (e.target.classList.contains('active')) {
       e.target.classList.remove('active');
     } else {
       e.target.classList.add('active');
     }
-    const stepID = e.target.id.slice(e.target.id.length - 2);
-    pattern.push(stepID);
-    dispatch(actions.patterns(pattern));
   };
 
   const sounds = useSelector((state) => state.sounds);
@@ -45,6 +41,7 @@ const Instrument = ({ name }) => {
   const analyser = sound.context.createAnalyser();
   const sampleBuffer = new Float32Array(analyser.fftSize);
   sound.chain(channel, analyser, Tone.Destination);
+  dispatch(actions.analysers(analyser, sampleBuffer, name));
 
   const time = Tone.Time(0.1);
 
@@ -112,7 +109,7 @@ const Instrument = ({ name }) => {
       >
         M
       </button>
-      <InstMixMeter analyser={analyser} sampleBuffer={sampleBuffer} inst={name} />
+      <InstMixMeter inst={name} />
     </div>
   );
 };
