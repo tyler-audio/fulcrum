@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-const initialState = ['kick-01'];
+const initialState = [];
 
 export default (state = initialState, action) => {
   switch (action.type) {
