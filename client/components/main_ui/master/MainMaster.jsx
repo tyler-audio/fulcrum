@@ -9,7 +9,8 @@ import BPM from './BPM.jsx';
 
 const MainMaster = () => {
   const instruments = useSelector((state) => state.instruments);
-  if (instruments.length !== 0) {
+  const samplers = useSelector((state) => state.samplers);
+  if (instruments.length !== 0 || samplers !== '') {
     return (
       <div id="main-master">
         <MainMasterMeter />

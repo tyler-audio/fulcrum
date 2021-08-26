@@ -6,6 +6,7 @@ import '../../../styles/main_ui/SeqLights.css';
 
 const SeqLights = () => {
   const instruments = useSelector((state) => state.instruments);
+  const samplers = useSelector((state) => state.samplers);
   const lights = [];
 
   for (let i = 0; i < 16; i += 1) {
@@ -14,7 +15,7 @@ const SeqLights = () => {
       id: i,
     });
   }
-  if (instruments.length !== 0) {
+  if (instruments.length !== 0 || samplers !== '') {
     return (
       <div id="seq-lights">
         {lights.map((light, i) => (

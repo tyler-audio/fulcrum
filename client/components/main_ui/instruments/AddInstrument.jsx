@@ -12,7 +12,7 @@ import actions from '../../../redux/actions/index';
 const AddInstrument = () => {
   const dispatch = useDispatch();
   const [selectedType, setSelectedType] = useState('');
-  // const [instType, setInstType] = useState('');
+  const [instType, setInstType] = useState('');
 
   const handleModal = () => {
     const modal = document.querySelector('#add-inst-modal');
@@ -44,7 +44,7 @@ const AddInstrument = () => {
                       className="add-inst-subtype"
                       onClick={(e) => {
                         setSelectedType(e.target.innerHTML);
-                        // setInstType(type);
+                        setInstType(type);
                       }}
                       key={i}
                     >
@@ -63,12 +63,12 @@ const AddInstrument = () => {
                 key={file}
                 className="add-inst-file"
                 onClick={(e) => {
-                  // if (instType === 'synth') {
-                  //   dispatch(actions.samplers(e.target.innerHTML));
-                  // } else {
-                  dispatch(actions.instruments(e.target.innerHTML));
+                  if (instType === 'synth') {
+                    dispatch(actions.samplers(e.target.innerHTML));
+                  } else {
+                    dispatch(actions.instruments(e.target.innerHTML));
+                  }
                   handleModal();
-                  // }
                 }}
               >
                 {file}

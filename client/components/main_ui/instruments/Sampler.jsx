@@ -65,58 +65,65 @@ const Sampler = () => {
   document.addEventListener('keyup', keyUp);
 
   const Controls = (view) => (
-    <div id={`controls-${view}`}>
-      <webaudio-knob
-        onMouseOver={(e) => e.target.addEventListener('input', () => {
-          channel.set({
-            volume: e.target.value,
-          });
-        })}
-        src="./knobs/Vintage_Knob.png"
-        min="-64"
-        max="0"
-        defvalue="-12"
-        diameter="64"
-      />
-      <webaudio-knob
-        onMouseOver={(e) => e.target.addEventListener('input', () => {
-          channel.set({
-            pan: e.target.value,
-          });
-        })}
-        src="./knobs/Vintage_Knob.png"
-        min="-1"
-        max="1"
-        step="0.1"
-        defvalue="0"
-        diameter="64"
-      />
-      <button
-        type="button"
-        onClick={() => {
-          channel.set({
-            solo: !channel.solo,
-          });
-        }}
-      >
-        S
-      </button>
-      <button
-        type="button"
-        onClick={() => {
-          channel.set({
-            mute: !channel.mute,
-          });
-        }}
-      >
-        M
-      </button>
+    <div className={`controls-${view}`}>
+      <div className={`${view}-knobs`}>
+
+        <webaudio-knob
+          onMouseOver={(e) => e.target.addEventListener('input', () => {
+            channel.set({
+              volume: e.target.value,
+            });
+          })}
+          src="./knobs/Vintage_Knob.png"
+          min="-64"
+          max="0"
+          value="-12"
+          diameter={view === 'main' ? '30' : '64'}
+        />
+        <webaudio-knob
+          onMouseOver={(e) => e.target.addEventListener('input', () => {
+            channel.set({
+              pan: e.target.value,
+            });
+          })}
+          src="./knobs/Vintage_Knob.png"
+          min="-1"
+          max="1"
+          step="0.1"
+          value="0"
+          diameter={view === 'main' ? '30' : '64'}
+        />
+      </div>
+      <div className={`${view}-mute-solo`}>
+        <button
+          className={`${view}-solo`}
+          type="button"
+          onClick={() => {
+            channel.set({
+              solo: !channel.solo,
+            });
+          }}
+        >
+          S
+        </button>
+        <button
+          className={`${view}-mute`}
+          type="button"
+          onClick={() => {
+            channel.set({
+              mute: !channel.mute,
+            });
+          }}
+        >
+          M
+        </button>
+      </div>
     </div>
   );
 
   return (
     <>
-      <div className="sampler-inst">
+      {/* <div className="sampler-inst">
         <button
           type="button"
           onClick={() => {
@@ -125,8 +132,8 @@ const Sampler = () => {
         >
           Sampler
         </button>
-        {Controls('main-controls')}
-      </div>
+        {Controls('main')}
+      </div> */}
       <div className="mix-panel-sampler hidden">
         <InstMixMeter inst={sample} />
         <InstChannel controls={Controls} />
@@ -138,9 +145,7 @@ const Sampler = () => {
             id={`${note}-${sample}`}
             className={note.length > 1 ? 'key black' : 'key white'}
             onClick={() => s.triggerAttackRelease(`${note}${octave}`, 5)}
-          >
-            {keys[i]}
-          </div>
+          />
         ))}
       </div>
     </>

@@ -9,6 +9,7 @@ const PatternSelect = () => {
   const dispatch = useDispatch();
   const [selPattern, setSelPattern] = useState('P1');
   const instruments = useSelector((state) => state.instruments);
+  const samplers = useSelector((state) => state.samplers);
   const length = useSelector((state) => state.patterns);
 
   const patterns = ['P1', 'P2', 'P3', 'P4'];
@@ -43,7 +44,7 @@ const PatternSelect = () => {
   // };
 
   // NEED TO IMPLEMENT SCROLL FEATURE FOR BUTTONS DURING CSS STYLING
-  if (instruments.length !== 0) {
+  if (instruments.length !== 0 || samplers !== '') {
     return (
       <div id="pattern-select">
         <button
