@@ -18,13 +18,10 @@ const AddInstrument = () => {
     const modal = document.querySelector('#add-inst-modal');
     const overlay = document.querySelector('#add-inst-overlay');
 
-    if (modal.classList.contains('active') && overlay.classList.contains('active')) {
-      modal.classList.remove('active');
-      overlay.classList.remove('active');
-    } else {
-      modal.classList.add('active');
-      overlay.classList.add('active');
-    }
+    modal.classList.toggle('active');
+    overlay.classList.toggle('active');
+
+    setSelectedType('');
   };
 
   // Modal box
@@ -46,8 +43,6 @@ const AddInstrument = () => {
                     <li
                       className="add-inst-subtype"
                       onClick={(e) => {
-                        const selType = document.querySelector('#selected-type');
-                        selType.innerHTML = e.target.innerHTML;
                         setSelectedType(e.target.innerHTML);
                         // setInstType(type);
                       }}
@@ -61,6 +56,7 @@ const AddInstrument = () => {
             ))}
           </ul>
           <div id="selected-type" />
+          {selectedType}
           <ul id="add-file-menu">
             {selectedType !== '' && data.instFiles[selectedType].map((file) => (
               <li
@@ -71,6 +67,7 @@ const AddInstrument = () => {
                   //   dispatch(actions.samplers(e.target.innerHTML));
                   // } else {
                   dispatch(actions.instruments(e.target.innerHTML));
+                  handleModal();
                   // }
                 }}
               >
@@ -78,12 +75,12 @@ const AddInstrument = () => {
               </li>
             ))}
           </ul>
-          <button
+          {/* <button
             type="button"
             onClick={handleModal}
           >
             SELECT
-          </button>
+          </button> */}
         </div>
       </div>
       <div onClick={handleModal} id="add-inst-overlay" />

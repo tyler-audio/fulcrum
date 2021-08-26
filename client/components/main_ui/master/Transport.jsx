@@ -43,14 +43,6 @@ const Transport = () => {
     isPlaying = false;
   };
 
-  document.addEventListener('keydown', (e) => {
-    if (e.keyCode === 32) {
-      playBtn();
-    } else if (e.keyCode === 66) {
-      stopBtn();
-    }
-  });
-
   return (
     <div>
       <div id="main-master-btns">

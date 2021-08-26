@@ -113,14 +113,15 @@ const PatternSelect = () => {
             value={length}
             name="length"
             id="settings-drop"
-            onChange={handleChange}
+            onChange={(e) => {
+              handleChange(e);
+              handleModal();
+            }}
           >
             {patterns.map((pattern, i) => (
               <option key={pattern} value={i + 1}>{i + 1}</option>
             ))}
           </select>
-
-          <button onClick={handleModal} type="submit">Ok</button>
         </div>
         <div onClick={handleModal} id="settings-overlay" />
       </div>

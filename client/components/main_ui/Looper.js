@@ -25,13 +25,6 @@ const configLoop = (bpm, sounds, length) => {
         light.classList.remove('on');
       }
     });
-
-    const pattern = document.querySelectorAll('.pattern-viewing');
-    pattern.forEach((p) => {
-      if (currentStep <= 16 && p.id === 0) {
-        p.classList.add('on');
-      }
-    });
     index += 1;
   };
   Tone.Transport.bpm.value = bpm;

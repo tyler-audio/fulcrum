@@ -32,10 +32,6 @@ const MixPanel = () => {
     }
   };
 
-  document.addEventListener('keydown', (e) => {
-    if (e.keyCode === 77) togglePanel();
-  });
-
   return (
     <button
       id="mix-panel-btn"
