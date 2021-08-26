@@ -1,4 +1,4 @@
 export default (sampler) => ({
-  type: 'ADD_SAMPLERS',
+  type: 'ADD_SAMPLER',
   payload: sampler,
 });

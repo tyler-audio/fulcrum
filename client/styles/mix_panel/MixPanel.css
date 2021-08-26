@@ -1,0 +1,34 @@
+.inst-mix-meter {
+  margin-top: 40%;
+  transform: rotate(270deg);
+  width: 250px;
+  height: 80px;
+}
+
+.mix-panel-inst.activated {
+  display: flex;
+  flex-direction: column;
+}
+
+.controls-mix-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.mix-panel-knobs {
+  display: flex;
+  flex-direction: column;
+}
+
+.mix-panel-mute-solo {
+  margin-top: 20px;
+  display: flex;
+}
+
+.mix-panel-mute,
+.mix-panel-solo {
+  margin: 5px;
+}

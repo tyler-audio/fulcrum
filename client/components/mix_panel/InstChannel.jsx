@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const InstChannel = ({ controls }) => (
   <>
-    {controls('mix-panel-controls')}
+    {controls('mix-panel')}
   </>
 );
 

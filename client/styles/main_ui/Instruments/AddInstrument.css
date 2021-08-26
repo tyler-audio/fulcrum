@@ -49,3 +49,14 @@
 .add-inst-file {
   cursor: pointer;
 }
+
+/* ======== ADD INSTRUMENT BUTTON ======== */
+
+#add-inst-button {
+  width: 110px;
+  height: 60px;
+  margin-top: 15px;
+  margin-left: 20px;
+  font-family: 'Rock Salt', cursive;
+  font-size: 10px;
+}

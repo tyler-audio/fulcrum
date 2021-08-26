@@ -12,7 +12,7 @@ import actions from '../../../redux/actions/index';
 const AddInstrument = () => {
   const dispatch = useDispatch();
   const [selectedType, setSelectedType] = useState('');
-  const [instType, setInstType] = useState('');
+  // const [instType, setInstType] = useState('');
 
   const handleModal = () => {
     const modal = document.querySelector('#add-inst-modal');
@@ -30,7 +30,7 @@ const AddInstrument = () => {
   // Modal box
   return (
     <div>
-      <button type="button" onClick={handleModal}>ADD INSTRUMENT</button>
+      <button id="add-inst-button" type="button" onClick={handleModal}>ADD INSTRUMENT</button>
       <div id="add-inst-modal">
         <div id="add-inst-header">
           <div id="add-inst-title">SELECT INSTRUMENT</div>
@@ -49,7 +49,7 @@ const AddInstrument = () => {
                         const selType = document.querySelector('#selected-type');
                         selType.innerHTML = e.target.innerHTML;
                         setSelectedType(e.target.innerHTML);
-                        setInstType(type);
+                        // setInstType(type);
                       }}
                       key={i}
                     >
@@ -67,11 +67,11 @@ const AddInstrument = () => {
                 key={file}
                 className="add-inst-file"
                 onClick={(e) => {
-                  if (instType === 'drums') {
-                    dispatch(actions.instruments(e.target.innerHTML));
-                  } else {
-                    dispatch(actions.samplers(e.target.innerHTML));
-                  }
+                  // if (instType === 'synth') {
+                  //   dispatch(actions.samplers(e.target.innerHTML));
+                  // } else {
+                  dispatch(actions.instruments(e.target.innerHTML));
+                  // }
                 }}
               >
                 {file}

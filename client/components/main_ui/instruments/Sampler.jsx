@@ -2,7 +2,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import * as Tone from 'tone';
 
@@ -11,8 +10,9 @@ import actions from '../../../redux/actions/index';
 import InstMixMeter from '../../mix_panel/InstMixMeter.jsx';
 import InstChannel from '../../mix_panel/InstChannel.jsx';
 
-const Sampler = ({ sample }) => {
+const Sampler = () => {
   const dispatch = useDispatch();
+  const sample = useSelector((state) => state.samplers);
 
   const s = new Tone.Sampler({
     urls: { C3: `${sample}.wav` },
@@ -20,7 +20,7 @@ const Sampler = ({ sample }) => {
   });
 
   const channel = new Tone.Channel({
-    volume: 0,
+    volume: -12,
     pan: 0,
     solo: false,
     mute: false,
@@ -36,13 +36,15 @@ const Sampler = ({ sample }) => {
 
   let played;
 
-  document.addEventListener('keydown', (e) => {
+  const time = Tone.Time(0.1);
+
+  const keyDown = (e) => {
     if (e.repeat) return;
     const k = e.key;
     const keyIndex = keys.indexOf(k);
     played = document.querySelector(`#${notes[keyIndex]}-${sample}`);
     if (played) played.classList.add('pressed');
-    if (keyIndex > -1) s.triggerAttackRelease(`${notes[keyIndex]}${octave}`, 5);
+    if (keyIndex > -1) s.triggerAttackRelease(`${notes[keyIndex]}${octave}`, time);
 
     if (k === 'x' && octave < 6) {
       octave += 1;
@@ -50,11 +52,17 @@ const Sampler = ({ sample }) => {
       octave -= 1;
     }
     e.stopImmediatePropagation();
-  });
+  };
 
-  document.addEventListener('keyup', () => {
+  const keyUp = () => {
     if (played) played.classList.remove('pressed');
-  });
+  };
+
+  document.removeEventListener('keydown', keyDown);
+  document.removeEventListener('keyup', keyUp);
+
+  document.addEventListener('keydown', keyDown);
+  document.addEventListener('keyup', keyUp);
 
   const Controls = (view) => (
     <div id={`controls-${view}`}>
@@ -65,9 +73,9 @@ const Sampler = ({ sample }) => {
           });
         })}
         src="./knobs/Vintage_Knob.png"
-        min="-32"
+        min="-64"
         max="0"
-        defvalue="-6"
+        defvalue="-12"
         diameter="64"
       />
       <webaudio-knob
@@ -108,12 +116,11 @@ const Sampler = ({ sample }) => {
 
   return (
     <>
-      <button type="button">O</button>
       <div className="sampler-inst">
         <button
           type="button"
           onClick={() => {
-            s.triggerAttackRelease(['G3'], 5);
+            s.triggerAttackRelease(['G3'], time);
           }}
         >
           Sampler
@@ -138,14 +145,6 @@ const Sampler = ({ sample }) => {
       </div>
     </>
   );
-};
-
-Sampler.propTypes = {
-  sample: PropTypes.string,
-};
-
-Sampler.defaultProps = {
-  sample: '',
 };
 
 export default Sampler;

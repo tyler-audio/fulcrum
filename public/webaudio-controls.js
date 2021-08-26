@@ -123,7 +123,7 @@
   display:inline-block;
   position:absolute;
   margin:0 -1000px;
-  z-index: 999;
+  z-index: 90;
   background:#eee;
   color:#000;
   border:1px solid #666;

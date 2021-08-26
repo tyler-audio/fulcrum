@@ -3,6 +3,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // import * as Tone from 'tone';
 
+// import '../../../styles/main_ui/Master/MainMaster.css';
 import actions from '../../../redux/actions/index';
 
 const BPM = () => {
@@ -29,7 +30,8 @@ const BPM = () => {
   // let bpm = 120;
 
   return (
-    <>
+    <div id="bpm-container">
+      <div>BPM</div>
       <div>
         {/* // onMouseDown={(e) => {
         //   isClicked = true;
@@ -40,20 +42,16 @@ const BPM = () => {
 
         {bpm}
       </div>
-      <label htmlFor="bpm">
-        Bpm:
-        <input
-          onChange={(e) => {
-            dispatch(actions.bpm(e.target.value));
-          }}
-          id="bpm"
-          type="range"
-          value={bpm}
-          min="60"
-          max="200"
-          step="1"
-        />
-      </label>
+      <webaudio-knob
+        onMouseOver={(e) => e.target.addEventListener('input', () => {
+          dispatch(actions.bpm(e.target.value));
+        })}
+        src="./knobs/Vintage_Knob.png"
+        value="120"
+        min="60"
+        max="200"
+        diameter="64"
+      />
       {/* <button
         type="button"
         onMouseDown={() => {
@@ -71,7 +69,7 @@ const BPM = () => {
       >
         TAP
       </button> */}
-    </>
+    </div>
   );
 };
 

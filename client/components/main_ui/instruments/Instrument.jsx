@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Tone from 'tone';
 
-import '../../../styles/main_ui/SeqLights.css';
+import '../../../styles/main_ui/Instruments/Instrument.css';
 import actions from '../../../redux/actions/index';
 import InstMixMeter from '../../mix_panel/InstMixMeter.jsx';
 import InstChannel from '../../mix_panel/InstChannel.jsx';
@@ -34,7 +34,7 @@ const Instrument = ({ name }) => {
   const sound = sounds.player(name);
 
   const channel = new Tone.Channel({
-    volume: 0,
+    volume: -12,
     pan: 0,
     solo: false,
     mute: false,
@@ -48,51 +48,58 @@ const Instrument = ({ name }) => {
 
   const Controls = (view) => (
     <div className={`controls-${view}`}>
-      <webaudio-knob
-        onMouseOver={(e) => e.target.addEventListener('input', () => {
-          channel.set({
-            volume: e.target.value,
-          });
-        })}
-        src="./knobs/Vintage_Knob.png"
-        min="-32"
-        max="0"
-        defvalue="-6"
-        diameter="64"
-      />
-      <webaudio-knob
-        onMouseOver={(e) => e.target.addEventListener('input', () => {
-          channel.set({
-            pan: e.target.value,
-          });
-        })}
-        src="./knobs/Vintage_Knob.png"
-        min="-1"
-        max="1"
-        step="0.1"
-        defvalue="0"
-        diameter="64"
-      />
-      <button
-        type="button"
-        onClick={() => {
-          channel.set({
-            solo: !channel.solo,
-          });
-        }}
-      >
-        S
-      </button>
-      <button
-        type="button"
-        onClick={() => {
-          channel.set({
-            mute: !channel.mute,
-          });
-        }}
-      >
-        M
-      </button>
+      <div className={`${view}-knobs`}>
+
+        <webaudio-knob
+          onMouseOver={(e) => e.target.addEventListener('input', () => {
+            channel.set({
+              volume: e.target.value,
+            });
+          })}
+          src="./knobs/Vintage_Knob.png"
+          min="-64"
+          max="0"
+          value="-12"
+          diameter={view === 'main' ? '30' : '64'}
+        />
+        <webaudio-knob
+          onMouseOver={(e) => e.target.addEventListener('input', () => {
+            channel.set({
+              pan: e.target.value,
+            });
+          })}
+          src="./knobs/Vintage_Knob.png"
+          min="-1"
+          max="1"
+          step="0.1"
+          value="0"
+          diameter={view === 'main' ? '30' : '64'}
+        />
+      </div>
+      <div className={`${view}-mute-solo`}>
+        <button
+          className={`${view}-solo`}
+          type="button"
+          onClick={() => {
+            channel.set({
+              solo: !channel.solo,
+            });
+          }}
+        >
+          S
+        </button>
+        <button
+          className={`${view}-mute`}
+          type="button"
+          onClick={() => {
+            channel.set({
+              mute: !channel.mute,
+            });
+          }}
+        >
+          M
+        </button>
+      </div>
     </div>
   );
 
@@ -100,26 +107,34 @@ const Instrument = ({ name }) => {
   // eventually make spans into buttons? airbnb
   return (
     <>
-      <div className="main-inst">
+      <div id="instrument-seq" className="main-inst">
         <button
+          className="play-sound-btn"
           type="button"
-          onClick={() => sound.start(time)}
+          onMouseDown={(e) => {
+            sound.start(time);
+            e.target.classList.toggle('active');
+          }}
+          onMouseUp={(e) => e.target.classList.toggle('active')}
         >
-          TEST
+          T
         </button>
-        {steps.map((step, i) => (
-          <span
-            key={step.step}
-            id={`step-0${i + 1}-${name}`}
-            onClick={active}
-            className="seq-step"
-            value={`${name}`}
-            sound={sound}
-          >
-            {step.step}
-          </span>
-        ))}
-        {Controls('main-controls')}
+        <span id="seq-steps">
+          {steps.map((step, i) => (
+            <button
+              type="button"
+              key={step.step}
+              id={`step-0${i + 1}-${name}`}
+              onClick={active}
+              className="seq-step"
+              value={`${name}`}
+              sound={sound}
+            >
+              {step.step < 10 ? `0${step.step}` : step.step}
+            </button>
+          ))}
+        </span>
+        {Controls('main')}
       </div>
       <div className="mix-panel-inst hidden">
         <InstMixMeter inst={name} />

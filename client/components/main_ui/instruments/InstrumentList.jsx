@@ -3,26 +3,21 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import Instrument from './Instrument.jsx';
-import Sampler from './Sampler.jsx';
+// import Sampler from './Sampler.jsx';
 
 const InstrumentList = () => {
   const instruments = useSelector((state) => state.instruments);
-  const samplers = useSelector((state) => state.samplers);
+  // const sampler = useSelector((state) => state.samplers);
 
   return (
     <>
       {instruments.map((inst) => (
-        <div key={inst}>
-          {inst}
+        <div id="main-inst-list" key={inst}>
+          <div id="inst-title">{inst}</div>
           <Instrument name={inst} />
         </div>
       ))}
-      {samplers.map((sampler) => (
-        <div key={sampler}>
-          {sampler}
-          <Sampler sample={sampler} />
-        </div>
-      ))}
+      {/* {sampler !== '' && <Sampler />} */}
     </>
   );
 };

@@ -11,7 +11,7 @@ const configLoop = (bpm, sounds, length) => {
     const currentLight = index % 16;
     const steps = document.querySelectorAll('.seq-step');
     steps.forEach((step) => {
-      const file = step.attributes[2].value;
+      const file = step.attributes[3].value;
       if (step.id === `step-0${currentStep + 1}-${file}` && step.classList.contains('active')) {
         sounds.player(file).start(time);
       }
@@ -23,6 +23,13 @@ const configLoop = (bpm, sounds, length) => {
         light.classList.add('on');
       } else {
         light.classList.remove('on');
+      }
+    });
+
+    const pattern = document.querySelectorAll('.pattern-viewing');
+    pattern.forEach((p) => {
+      if (currentStep <= 16 && p.id === 0) {
+        p.classList.add('on');
       }
     });
     index += 1;
