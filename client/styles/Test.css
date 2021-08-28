@@ -5,6 +5,7 @@
 .key {
   height: calc(var(--width) * 2);
   width: var(--width);
+  border-radius: 4px;
 }
 
 .white {

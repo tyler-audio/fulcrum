@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as Tone from 'tone';
 
@@ -14,21 +14,6 @@ const Sampler = () => {
   const dispatch = useDispatch();
   const sample = useSelector((state) => state.samplers);
 
-  const s = new Tone.Sampler({
-    urls: { C3: `${sample}.wav` },
-    baseUrl: './samples/',
-  });
-
-  const channel = new Tone.Channel({
-    volume: -12,
-    pan: 0,
-    solo: false,
-    mute: false,
-  });
-  const analyser = s.context.createAnalyser();
-  const sampleBuffer = new Float32Array(analyser.fftSize);
-  s.chain(channel, analyser, Tone.Destination);
-  dispatch(actions.analysers(analyser, sampleBuffer, sample));
 
   const keys = ['a', 'w', 's', 'e', 'd', 'f', 't', 'g', 'y', 'h', 'u', 'j'];
   const notes = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
@@ -51,18 +36,37 @@ const Sampler = () => {
     } else if (k === 'z' && octave !== 1) {
       octave -= 1;
     }
-    e.stopImmediatePropagation();
+    // e.stopImmediatePropagation();
   };
 
   const keyUp = () => {
     if (played) played.classList.remove('pressed');
   };
+  useEffect(async () => {
+  const key = document.querySelector('.key');
 
-  document.removeEventListener('keydown', keyDown);
-  document.removeEventListener('keyup', keyUp);
+    key.removeEventListener('keydown', keyDown);
+    key.removeEventListener('keyup', keyUp);
+    key.addEventListener('keydown', keyDown);
+    key.addEventListener('keyup', keyUp);
+    key.focus();
+  }, [sample]);
 
-  document.addEventListener('keydown', keyDown);
-  document.addEventListener('keyup', keyUp);
+  const s = new Tone.Sampler({
+    urls: { C3: `${sample}.wav` },
+    baseUrl: './samples/',
+  });
+
+  const channel = new Tone.Channel({
+    volume: -12,
+    pan: 0,
+    solo: false,
+    mute: false,
+  });
+  const analyser = s.context.createAnalyser();
+  const sampleBuffer = new Float32Array(analyser.fftSize);
+  s.chain(channel, analyser, Tone.Destination);
+  dispatch(actions.analysers(analyser, sampleBuffer, sample));
 
   const Controls = (view) => (
     <div className={`controls-${view}`}>
@@ -141,6 +145,7 @@ const Sampler = () => {
       <div className="piano">
         {notes.map((note, i) => (
           <div
+            tabIndex="0"
             key={note}
             id={`${note}-${sample}`}
             className={note.length > 1 ? 'key black' : 'key white'}
