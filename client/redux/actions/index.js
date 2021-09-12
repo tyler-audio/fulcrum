@@ -5,6 +5,7 @@ import sounds from './sounds';
 import analysers from './analysers';
 import samplers from './samplers';
 import armed from './armed';
+import isPlaying from './isPlaying';
 
 const actions = {
   bpm,
@@ -14,6 +15,7 @@ const actions = {
   analysers,
   samplers,
   armed,
+  isPlaying,
 };
 
 export default actions;

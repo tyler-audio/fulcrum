@@ -7,6 +7,7 @@ import sounds from './sounds';
 import analysers from './analysers';
 import samplers from './samplers';
 import armed from './armed';
+import isPlaying from './isPlaying';
 
 const rootReducer = {
   bpm,
@@ -16,6 +17,7 @@ const rootReducer = {
   analysers,
   samplers,
   armed,
+  isPlaying,
 };
 
 export default combineReducers(rootReducer);

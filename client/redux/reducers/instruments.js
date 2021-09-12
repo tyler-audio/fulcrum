@@ -4,8 +4,7 @@ const initialState = [];
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_INSTRUMENT':
-      state = [...state, action.payload];
-      return state;
+      return [...state, action.payload];
     default:
       return state;
   }

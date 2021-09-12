@@ -9,10 +9,18 @@ import MixPanel from './MixPanel.jsx';
 import MainMasterFader from './MainMasterFader.jsx';
 
 const Transport = () => {
-  const sounds = useSelector((state) => state.sounds);
-  const bpm = useSelector((state) => state.bpm);
-  const instAnalysers = useSelector((state) => state.analysers);
-  const length = useSelector((state) => state.patterns);
+  const state = useSelector((s) => ({
+    sounds: s.sounds,
+    bpm: s.bpm,
+    instAnalysers: s.analysers,
+    length: s.patterns,
+  }));
+  const {
+    sounds,
+    bpm,
+    instAnalysers,
+    length,
+  } = state;
 
   const analyser = sounds.context.createAnalyser();
   const sampleBuffer = new Float32Array(analyser.fftSize);

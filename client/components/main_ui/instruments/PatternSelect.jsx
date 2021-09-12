@@ -8,8 +8,12 @@ import actions from '../../../redux/actions/index';
 const PatternSelect = () => {
   const dispatch = useDispatch();
   const [selPattern, setSelPattern] = useState('P1');
-  const instruments = useSelector((state) => state.instruments);
-  const length = useSelector((state) => state.patterns);
+
+  const state = useSelector((s) => ({
+    instruments: s.instruments,
+    length: s.patterns,
+  }));
+  const { instruments, length } = state;
 
   const patterns = ['P1', 'P2', 'P3', 'P4'];
 

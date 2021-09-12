@@ -5,7 +5,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as Tone from 'tone';
 
-import '../../../styles/Test.css';
+// import '../../../styles/Test.css';
 import actions from '../../../redux/actions/index';
 import InstMixMeter from '../../mix_panel/InstMixMeter.jsx';
 import InstChannel from '../../mix_panel/InstChannel.jsx';

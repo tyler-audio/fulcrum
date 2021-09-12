@@ -1,13 +1,27 @@
 /* eslint-disable import/extensions */
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import * as Tone from 'tone';
+import actions from '../../../redux/actions/index.js';
 
 import Instrument from './Instrument.jsx';
 // import Sampler from './Sampler.jsx';
 
 const InstrumentList = () => {
-  const instruments = useSelector((state) => state.instruments);
   // const sampler = useSelector((state) => state.samplers);
+  const dispatch = useDispatch();
+
+  const instruments = useSelector((state) => state.instruments);
+
+  const baseURL = './samples/';
+  const options = {};
+
+  instruments.forEach((inst) => {
+    options[inst] = `${baseURL}${inst}.wav`;
+  });
+
+  const sounds = new Tone.Players(options);
+  dispatch(actions.sounds(sounds));
 
   return (
     <>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import '../../../styles/Modal.css';
+// import '../../../styles/Modal.css';
 
 const MainMasterFader = ({ volume }) => (
   <webaudio-knob
