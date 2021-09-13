@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Tone from 'tone';
@@ -39,10 +39,13 @@ const Instrument = ({ name }) => {
     solo: false,
     mute: false,
   });
-  const analyser = sound.context.createAnalyser();
-  const sampleBuffer = new Float32Array(analyser.fftSize);
-  sound.chain(channel, analyser, Tone.Destination);
-  dispatch(actions.analysers(analyser, sampleBuffer, name));
+
+  useEffect(() => {
+    const analyser = sound.context.createAnalyser();
+    const sampleBuffer = new Float32Array(analyser.fftSize);
+    sound.chain(channel, analyser, Tone.Destination);
+    dispatch(actions.analysers(analyser, sampleBuffer, name));
+  }, [sounds]);
 
   const time = Tone.Time(0.1);
 

@@ -10,7 +10,6 @@ import Instrument from './Instrument.jsx';
 const InstrumentList = () => {
   // const sampler = useSelector((state) => state.samplers);
   const dispatch = useDispatch();
-
   const instruments = useSelector((state) => state.instruments);
 
   const baseURL = './samples/';
