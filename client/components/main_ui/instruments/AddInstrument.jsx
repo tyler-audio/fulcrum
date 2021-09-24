@@ -36,6 +36,7 @@ const AddInstrument = () => {
           handleModal();
           Tone.Transport.stop();
           Tone.Transport.cancel();
+          dispatch(actions.isPlaying(false));
         }}
       >
         ADD INSTRUMENT

@@ -1,7 +1,8 @@
 /* eslint-disable import/extensions */
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import * as Tone from 'tone';
+import actions from '../../../redux/actions/index.js';
 
 import configLoop from '../Looper';
 import volMeters from '../../Meters.js';
@@ -9,17 +10,20 @@ import MixPanel from './MixPanel.jsx';
 import MainMasterFader from './MainMasterFader.jsx';
 
 const Transport = () => {
+  const dispatch = useDispatch();
   const state = useSelector((s) => ({
     sounds: s.sounds,
     bpm: s.bpm,
     instAnalysers: s.analysers,
     length: s.patterns,
+    isPlaying: s.isPlaying,
   }));
   const {
     sounds,
     bpm,
     instAnalysers,
     length,
+    isPlaying,
   } = state;
 
   const analyser = sounds.context.createAnalyser();
@@ -28,8 +32,6 @@ const Transport = () => {
   const volume = new Tone.Volume({ volume: 0 });
   // const split = new Tone.Split();
   Tone.Destination.chain(volume, limiter, analyser);
-
-  let isPlaying = false;
 
   const playBtn = () => {
     if (isPlaying) {
@@ -41,14 +43,14 @@ const Transport = () => {
     instAnalysers.forEach((a) => {
       volMeters.mixMeter(a.analyser, a.sampleBuffer, a.instrument);
     });
-    isPlaying = true;
+    dispatch(actions.isPlaying(true));
   };
   const stopBtn = () => {
     Tone.Transport.stop();
     Tone.Transport.cancel();
     const lights = document.querySelectorAll('.seq-light');
     lights.forEach((light) => light.classList.remove('on'));
-    isPlaying = false;
+    dispatch(actions.isPlaying(false));
   };
 
   return (
