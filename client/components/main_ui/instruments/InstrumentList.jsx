@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-import React from 'react';
+import React, {} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as Tone from 'tone';
 import actions from '../../../redux/actions/index.js';

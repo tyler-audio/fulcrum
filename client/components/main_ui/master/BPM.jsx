@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // import * as Tone from 'tone';
 
-// import '../../../styles/main_ui/Master/MainMaster.css';
+import '../../../styles/main_ui/Master/MainMaster.css';
 import actions from '../../../redux/actions/index';
 
 const BPM = () => {

@@ -1,6 +1,4 @@
 /* eslint-disable no-param-reassign */
-// import React from 'react';
-// import { useSelector } from 'react-redux';
 import * as Tone from 'tone';
 
 const configLoop = (bpm, sounds, length) => {

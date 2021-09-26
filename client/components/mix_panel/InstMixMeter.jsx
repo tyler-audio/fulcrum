@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// import '../../styles/mix_panel/MixPanel.css';
+import '../../styles/mix_panel/MixPanel.css';
 
 const InstMixMeter = ({ inst }) => (
   <div id="levels">

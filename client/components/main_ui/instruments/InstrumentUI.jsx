@@ -6,7 +6,7 @@ import SeqLights from './SeqLights.jsx';
 import AddInstrument from './AddInstrument.jsx';
 import PatternSelect from './PatternSelect.jsx';
 
-// import '../../../styles/main_ui/Instruments/InstrumentUI.css';
+import '../../../styles/main_ui/Instruments/InstrumentUI.css';
 
 export default () => (
   <div id="main-ui-inst">

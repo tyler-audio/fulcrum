@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Tone from 'tone';
 
-// import '../../../styles/main_ui/Instruments/Instrument.css';
+import '../../../styles/main_ui/Instruments/Instrument.css';
 import actions from '../../../redux/actions/index';
 import InstMixMeter from '../../mix_panel/InstMixMeter.jsx';
 import InstChannel from '../../mix_panel/InstChannel.jsx';

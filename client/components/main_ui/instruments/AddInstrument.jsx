@@ -5,8 +5,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import * as Tone from 'tone';
 
-// import '../../../styles/main_ui/Instruments/AddInstrument.css';
-// import '../../../styles/Modal.css';
+import '../../../styles/main_ui/Instruments/AddInstrument.css';
+import '../../../styles/Modal.css';
 
 import data from '../../../lib/Inst/index';
 import actions from '../../../redux/actions/index';
@@ -43,7 +43,7 @@ const AddInstrument = () => {
       </button>
       <div id="add-inst-modal">
         <div id="add-inst-header">
-          <div id="add-inst-title">SELECT INSTRUMENT</div>
+          <div>SELECT INSTRUMENT</div>
           <button id="add-inst-close" type="button" onClick={handleModal}>&times;</button>
         </div>
         <div id="add-inst-body">
