@@ -7,6 +7,7 @@ import MainMaster from './master/MainMaster.jsx';
 
 const Main = () => (
   <div id="main" className="hidden">
+    <div id="overlay-shadow" />
     <InstrumentUI />
     <MainMaster />
   </div>

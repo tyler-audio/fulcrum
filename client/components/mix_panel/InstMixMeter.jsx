@@ -9,7 +9,7 @@ const InstMixMeter = ({ inst }) => (
       id={`mix-meter-${inst}`}
       className="inst-mix-meter"
       min="-100"
-      max="10"
+      max="0"
       value="-100"
     />
     {/* <meter

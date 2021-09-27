@@ -4,7 +4,7 @@ import React from 'react';
 import InstrumentList from './InstrumentList.jsx';
 import SeqLights from './SeqLights.jsx';
 import AddInstrument from './AddInstrument.jsx';
-import PatternSelect from './PatternSelect.jsx';
+// import PatternSelect from './PatternSelect.jsx';
 
 import '../../../styles/main_ui/Instruments/InstrumentUI.css';
 
@@ -16,7 +16,7 @@ export default () => (
     <SeqLights />
     <div id="inst-ui-btns">
       <AddInstrument />
-      <PatternSelect />
+      {/* <PatternSelect /> */}
     </div>
   </div>
 );

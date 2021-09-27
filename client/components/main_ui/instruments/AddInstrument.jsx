@@ -36,6 +36,8 @@ const AddInstrument = () => {
           handleModal();
           Tone.Transport.stop();
           Tone.Transport.cancel();
+          const lights = document.querySelectorAll('.seq-light');
+          lights.forEach((light) => light.classList.remove('on'));
           dispatch(actions.isPlaying(false));
         }}
       >
@@ -88,12 +90,6 @@ const AddInstrument = () => {
               </li>
             ))}
           </ul>
-          {/* <button
-            type="button"
-            onClick={handleModal}
-          >
-            SELECT
-          </button> */}
         </div>
       </div>
       <div onClick={handleModal} id="add-inst-overlay" />

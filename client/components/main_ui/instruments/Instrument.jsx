@@ -139,6 +139,9 @@ const Instrument = ({ name }) => {
         </span>
         {Controls('main')}
       </div>
+      <div className="mix-panel-inst">
+        <InstMixMeter inst={name} />
+      </div>
       <div className="mix-panel-inst hidden">
         <InstMixMeter inst={name} />
         <InstChannel controls={Controls} />

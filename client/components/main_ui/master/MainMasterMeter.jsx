@@ -9,7 +9,6 @@ const MainMasterMeter = () => (
       max="0"
       value="-100"
       high="-8"
-      // low="-6"
     />
     <meter
       id="main-master-right"

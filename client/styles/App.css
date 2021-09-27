@@ -26,8 +26,9 @@ body {
 
 #root {
   border-radius: 5px;
-  position: fixed;
+  position: relative;
   display: flex;
+  overflow: hidden;
   height: 80%;
   min-width: 40%;
   width: 80%;
@@ -38,9 +39,17 @@ body {
   transform: translate(-50%, -50%);
   background-color: #2f3b36;
   background-image: url("https://www.transparenttextures.com/patterns/green-dust-and-scratches.png");
-  box-shadow: inset -5em -5em 80px #1a191b,
-  inset 0.5em 0.5em 50px 30px #1a191b;
   /* overflow: hidden; */
+}
+
+#overlay-shadow {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset -5em -5em 80px #1a191b,
+    inset 0.5em 0.5em 50px 30px #1a191b;
+  z-index: 999;
 }
 
 #root.home {
@@ -56,11 +65,9 @@ body {
 button {
   margin: 0;
   border-radius: 2px;
-
-	transition: margin-top 0.1s ease-in-out,
+  transition: margin-top 0.1s ease-in-out,
     margin-left 0.1s ease-in-out,
     box-shadow 0.1s ease-in-out;
-
   background-image: -webkit-linear-gradient(top, #a19683 0%, #e9d8bc 15%, #a19683 35%, #a19683e1 50%, #a19683 65%, #e9d8bc 85%, #a19683e1 100%);
   box-shadow: 1px 0px 0px #1a191b,0px 1px 0px #1a191b,
     2px 1px 0px #1a191b,1px 2px 0px #1a191b,
@@ -69,17 +76,14 @@ button {
 }
 
 button:active{
-
-	transition: margin-top 0.1s ease-in-out,
-				margin-left 0.1s ease-in-out,
-				box-shadow 0.1s ease-in-out;
-
+  transition: margin-top 0.1s ease-in-out,
+    margin-left 0.1s ease-in-out,
+    box-shadow 0.1s ease-in-out;
   margin-left:2px;
-	margin-top:2px;
-
+  margin-top:2px;
   box-shadow: 0px 0px 0px #1a191b,0px 0px 0px #1a191b,
-  				0px 0px 0px #1a191b,0px 0px 0px #1a191b,
-          inset 0 0 10px #1a191b;
+    0px 0px 0px #1a191b,0px 0px 0px #1a191b,
+    inset 0 0 10px #1a191b;
 
 }
 
@@ -113,11 +117,9 @@ button:active{
 
 #title-enter {
   margin: 0;
-
-	transition: margin-top 0.1s ease-in-out,
+  transition: margin-top 0.1s ease-in-out,
     margin-left 0.1s ease-in-out,
     box-shadow 0.1s ease-in-out;
-
   background-image: url("https://www.transparenttextures.com/patterns/green-dust-and-scratches.png");
   color: #e9d8bc;
   background-color: #2f3b36;
@@ -132,19 +134,15 @@ button:active{
 }
 
 #title-enter:active{
-
   transition:
     margin-top 0.1s ease-in-out,
     margin-left 0.1s ease-in-out,
     box-shadow 0.1s ease-in-out;
-
   margin-left:2px;
   margin-top:2px;
-
   box-shadow: 0px 0px 0px #a19683,0px 0px 0px #a19683,
           0px 0px 0px #a19683,0px 0px 0px #a19683,
           inset 0 0 10px #a19683;
-
 }
 
 meter::-webkit-meter-bar {

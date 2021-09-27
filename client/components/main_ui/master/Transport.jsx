@@ -6,7 +6,7 @@ import actions from '../../../redux/actions/index.js';
 
 import configLoop from '../Looper';
 import volMeters from '../../Meters.js';
-import MixPanel from './MixPanel.jsx';
+// import MixPanel from './MixPanel.jsx';
 import MainMasterFader from './MainMasterFader.jsx';
 
 const Transport = () => {
@@ -32,6 +32,10 @@ const Transport = () => {
   const volume = new Tone.Volume({ volume: 0 });
   // const split = new Tone.Split();
   Tone.Destination.chain(volume, limiter, analyser);
+  volMeters.masterMeter(analyser, sampleBuffer);
+  instAnalysers.forEach((a) => {
+    volMeters.mixMeter(a.analyser, a.sampleBuffer, a.instrument);
+  });
 
   const playBtn = () => {
     if (isPlaying) {
@@ -39,10 +43,6 @@ const Transport = () => {
     }
     Tone.start();
     configLoop(bpm, sounds, length);
-    volMeters.masterMeter(analyser, sampleBuffer);
-    instAnalysers.forEach((a) => {
-      volMeters.mixMeter(a.analyser, a.sampleBuffer, a.instrument);
-    });
     dispatch(actions.isPlaying(true));
   };
   const stopBtn = () => {
@@ -57,7 +57,7 @@ const Transport = () => {
     <div>
       <div id="main-master-btns">
         <MainMasterFader volume={volume} />
-        <MixPanel />
+        {/* <MixPanel /> */}
       </div>
 
       <div id="main-transport">

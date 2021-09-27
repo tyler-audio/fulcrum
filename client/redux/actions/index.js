@@ -4,7 +4,6 @@ import instruments from './instruments';
 import sounds from './sounds';
 import analysers from './analysers';
 import samplers from './samplers';
-import armed from './armed';
 import isPlaying from './isPlaying';
 
 const actions = {
@@ -14,7 +13,6 @@ const actions = {
   sounds,
   analysers,
   samplers,
-  armed,
   isPlaying,
 };
 

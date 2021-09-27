@@ -1,8 +1,12 @@
-.inst-mix-meter {
+/* .inst-mix-meter {
   margin-top: 40%;
   transform: rotate(270deg);
-  width: 250px;
-  height: 80px;
+  min-width: 250px;
+  min-height: 80px;
+} */
+
+.inst-mix-meter {
+  margin-left: 64px;
 }
 
 .mix-panel-inst.activated {
