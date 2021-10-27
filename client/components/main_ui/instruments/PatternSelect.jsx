@@ -28,25 +28,7 @@ const PatternSelect = () => {
     const l = Number(e.target.value);
     dispatch(actions.patterns(l));
   };
-  // const instSeq = document.querySelectorAll('#seq-steps');
 
-  // const handleScroll = (e) => {
-  //   console.log(e.target.id);
-  //   if (e.target.id === 'pattern-left') {
-  //     console.log('left')
-  //     for (let i = 0; i < instSeq.length; i += 1) {
-  //       instSeq[i].scrollLeft -= 778;
-  //     }
-  //   }
-  //   if (e.target.id === 'pattern-right') {
-  //     console.log('right')
-  //     for (let i = 0; i < instSeq.length; i += 1) {
-  //       instSeq[i].scrollLeft += 778;
-  //     }
-  //   }
-  // };
-
-  // NEED TO IMPLEMENT SCROLL FEATURE FOR BUTTONS DURING CSS STYLING
   if (instruments.length !== 0) {
     return (
       <div id="pattern-select">
@@ -54,7 +36,6 @@ const PatternSelect = () => {
           id="pattern-left"
           type="button"
           className={length === 1 || selPattern === 'P1' ? 'disabled' : ''}
-          // onMouseDown={(e) => handleScroll(e)}
           onClick={() => {
             let p = selPattern[1];
             p = Number(p);
@@ -92,7 +73,6 @@ const PatternSelect = () => {
           id="pattern-right"
           type="button"
           className={length === 1 || selPattern === `P${length}` ? 'disabled' : ''}
-          // onMouseDown={(e) => handleScroll(e)}
           onClick={() => {
             let p = selPattern[1];
             p = Number(p);

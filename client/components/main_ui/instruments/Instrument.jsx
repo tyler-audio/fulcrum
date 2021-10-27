@@ -106,8 +106,6 @@ const Instrument = ({ name }) => {
     </div>
   );
 
-  // create a div for each step in sequencer
-  // eventually make spans into buttons? airbnb
   return (
     <>
       <div id="instrument-seq" className="main-inst">

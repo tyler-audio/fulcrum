@@ -44,30 +44,3 @@ const MixPanel = () => {
 };
 
 export default MixPanel;
-// if (mixPanelInst.classList.contains('hidden')) {
-//   mixPanelInst.classList.remove('hidden');
-//   mainInst.classList.add('hidden');
-// } else if (mainInst.classList.contains('hidden')) {
-//   mainInst.classList.remove('hidden');
-//   mixPanelInst.classList.add('hidden');
-// }
-
-// const sampleInst = document.querySelector('.sampler-inst');
-// const mixPanelSampler = document.querySelector('.mix-panel-sampler');
-
-//   if (mixPanelInst.classList.contains('hidden')
-// && mixPanelSampler.classList.contains('hidden')) {
-//     mixPanelInst.classList.remove('hidden');
-//     mixPanelSampler.classList.remove('hidden');
-
-//     mainInst.classList.add('hidden');
-//     sampleInst.classList.add('hidden');
-//   } else if (mainInst.classList.contains('hidden')
-// && sampleInst.classList.contains('hidden')) {
-//     mainInst.classList.remove('hidden');
-//     sampleInst.classList.remove('hidden');
-
-//     mixPanelInst.classList.add('hidden');
-//     mixPanelSampler.classList.add('hidden');
-//   }
-// }}

@@ -30,7 +30,6 @@ const Transport = () => {
   const sampleBuffer = new Float32Array(analyser.fftSize);
   const limiter = new Tone.Limiter(-3);
   const volume = new Tone.Volume({ volume: 0 });
-  // const split = new Tone.Split();
   Tone.Destination.chain(volume, limiter, analyser);
   volMeters.masterMeter(analyser, sampleBuffer);
   instAnalysers.forEach((a) => {

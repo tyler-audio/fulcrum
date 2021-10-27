@@ -12,23 +12,15 @@ const InstMixMeter = ({ inst }) => (
       max="0"
       value="-100"
     />
-    {/* <meter
-      className="main-master-meter"
-      min="-100"
-      max="10"
-      value="-100"
-    /> */}
   </div>
 );
 
 InstMixMeter.propTypes = {
   inst: PropTypes.string,
-  // sounds: PropTypes.objectOf(PropTypes.shape),
 };
 
 InstMixMeter.defaultProps = {
   inst: '',
-  // sounds: {},
 };
 
 export default InstMixMeter;
