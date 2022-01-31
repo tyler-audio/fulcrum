@@ -2,11 +2,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Tone from 'tone';
-
-import '../../../styles/main_ui/Instruments/AddInstrument.css';
-import '../../../styles/Modal.css';
 
 import data from '../../../lib/Inst/index';
 import actions from '../../../redux/actions/index';
@@ -14,7 +11,7 @@ import actions from '../../../redux/actions/index';
 const AddInstrument = () => {
   const dispatch = useDispatch();
   const [selectedType, setSelectedType] = useState('');
-  // const [instType, setInstType] = useState('');
+  const isPlaying = useSelector((s) => s.isPlaying);
 
   const handleModal = () => {
     const modal = document.querySelector('#add-inst-modal');
@@ -26,7 +23,6 @@ const AddInstrument = () => {
     setSelectedType('');
   };
 
-  // Modal box
   return (
     <div>
       <button
@@ -34,8 +30,10 @@ const AddInstrument = () => {
         type="button"
         onClick={() => {
           handleModal();
-          Tone.Transport.stop();
-          Tone.Transport.cancel();
+          if (isPlaying) {
+            Tone.Transport.stop();
+            Tone.Transport.cancel();
+          }
           const lights = document.querySelectorAll('.seq-light');
           lights.forEach((light) => light.classList.remove('on'));
           dispatch(actions.isPlaying(false));
@@ -59,7 +57,6 @@ const AddInstrument = () => {
                       className="add-inst-subtype"
                       onClick={(e) => {
                         setSelectedType(e.target.innerHTML);
-                        // setInstType(type);
                       }}
                       key={i}
                     >
@@ -78,12 +75,8 @@ const AddInstrument = () => {
                 key={file}
                 className="add-inst-file"
                 onClick={(e) => {
-                  // if (instType === 'synth') {
-                  //   dispatch(actions.samplers(e.target.innerHTML));
-                  // } else {
                   dispatch(actions.instruments(e.target.innerHTML));
                   handleModal();
-                  // }
                 }}
               >
                 {file}

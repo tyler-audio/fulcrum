@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable import/extensions */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -6,17 +7,14 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Tone from 'tone';
 
-import '../../../styles/main_ui/Instruments/Instrument.css';
 import actions from '../../../redux/actions/index';
 import InstMixMeter from '../../mix_panel/InstMixMeter.jsx';
-import InstChannel from '../../mix_panel/InstChannel.jsx';
 
 const Instrument = ({ name }) => {
   const dispatch = useDispatch();
 
   const steps = [];
-
-  for (let i = 0; i < 64; i += 1) {
+  for (let i = 0; i < 16; i += 1) {
     steps.push({
       step: i + 1,
     });
@@ -117,9 +115,7 @@ const Instrument = ({ name }) => {
             e.target.classList.toggle('active');
           }}
           onMouseUp={(e) => e.target.classList.toggle('active')}
-        >
-          T
-        </button>
+        />
         <span id="seq-steps">
           {steps.map((step, i) => (
             <button
@@ -130,19 +126,13 @@ const Instrument = ({ name }) => {
               className="seq-step"
               value={`${name}`}
               sound={sound}
-            >
-              {step.step < 10 ? `0${step.step}` : step.step}
-            </button>
+            />
           ))}
         </span>
         {Controls('main')}
       </div>
-      <div className="mix-panel-inst">
+      <div className="instrument-meter">
         <InstMixMeter inst={name} />
-      </div>
-      <div className="mix-panel-inst hidden">
-        <InstMixMeter inst={name} />
-        <InstChannel controls={Controls} />
       </div>
     </>
   );
@@ -150,12 +140,10 @@ const Instrument = ({ name }) => {
 
 Instrument.propTypes = {
   name: PropTypes.string,
-  // sounds: PropTypes.objectOf(PropTypes.shape),
 };
 
 Instrument.defaultProps = {
   name: '',
-  // sounds: {},
 };
 
 export default Instrument;

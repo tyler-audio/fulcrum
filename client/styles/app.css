@@ -1,0 +1,394 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: 'Sedgwick Ave Display', cursive;
+  color: #e9d8bc;
+}
+
+body {
+  background-color: #1a191b;
+  background-image: url("https://www.transparenttextures.com/patterns/concrete-wall.png");
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.hidden {
+  display: none;
+  pointer-events: none;
+}
+
+#root {
+  border-radius: .5em;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  height: 80%;
+  min-width: 40%;
+  width: 80%;
+  margin: 0;
+  padding: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #2f3b36;
+  background-image: url("https://www.transparenttextures.com/patterns/green-dust-and-scratches.png");
+}
+
+button {
+  margin: 0;
+  border-radius: 2px;
+  padding: 0;
+  background-image: -webkit-linear-gradient(top, #a19683 0%, #e9d8bc 15%, #a19683 35%, #a19683e1 50%, #a19683 65%, #e9d8bc 85%, #a19683e1 100%);
+  box-shadow: 1px 0px 0px #1a191b,0px 1px 0px #1a191b,
+    2px 1px 0px #1a191b,1px 2px 0px #1a191b,
+    3px 2px 0px #1a191b,2px 3px 0px #1a191b,
+    inset 0 0 10px #1a191b;
+}
+
+button:active{
+  box-shadow: inset 0 0 10px #1a191b;
+  transform: translate(2px, 2px);
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.play-sound-btn,
+.seq-step {
+  color: transparent;
+}
+
+meter::-webkit-meter-bar {
+  border-radius: 0.5em;
+  border-color: #1a191b;
+  background: #a19683;
+}
+
+meter::-webkit-meter-optimum-value {
+  background: #a19683;
+  background: linear-gradient(90deg, #a19683 0%, #beddcd 100%);
+}
+
+/* ========
+Seq Lights
+======== */
+
+#seq-lights {
+  display: flex;
+  margin-left: 3.1em;
+  width: 88.5%;
+  justify-content: space-around;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.seq-light {
+  border: 2px groove #a19683;
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 50%;
+  box-shadow: inset 0 0 1em #e9d8bc;
+}
+
+.seq-light.on {
+  background-color: #beddcd;
+  box-shadow: 0 0 2px #beddcd;
+}
+
+/* ========
+Main
+======== */
+
+#main {
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+#overlay-shadow {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset -5em -5em 5em #1a191b,
+    inset 0.5em 0.5em 3em 2em #1a191b;
+  z-index: 999;
+}
+
+/* ========
+Instruments
+======== */
+
+#instrument-ui {
+  padding: 2%;
+  width: 80%;
+}
+
+#instrument-list {
+  max-height: 470px;
+  width: 100%;
+  overflow-y: overlay;
+}
+
+[id^="instrument-player-"] {
+  width: 100%;
+  overflow: hidden;
+
+}
+
+#inst-title {
+  font-family: 'Rock Salt', cursive;
+  margin-left: 4em;
+}
+
+#inst-title.center {
+  display: flex;
+  justify-content: center;
+  text-decoration: wavy;
+}
+
+#instrument-seq {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.play-sound-btn {
+  height: 3.6em;
+  width: 3.6em;
+}
+
+#seq-steps {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  flex: 2;
+  justify-content: space-around;
+  height: 3.2em;
+}
+
+.seq-step {
+  width: 3em;
+  height: 3em;
+}
+
+.seq-step.active,
+.play-sound-btn.active {
+  background: #beddcd;
+}
+
+.controls-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-mute-solo,
+.main-knobs {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.main-mute,
+.main-solo {
+  height: 2.5em;
+  width: 2.5em;
+  font-family: 'Rock Salt', cursive;
+  font-size: 0.5em;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ========
+Master Channel
+======== */
+
+#main-master {
+  width: 20%;
+  max-width: 20%;
+  padding-top: 2.5%;
+  padding-right: 2%;
+}
+
+#levels {
+  display: flex;
+  flex-direction: column;
+  transform: rotate(270deg);
+  margin-top: 2em;
+}
+
+.main-master-meter {
+  height: 6em;
+  width: 100%;
+}
+
+#main-transport {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#main-master-btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15%;
+}
+
+#main-transport-play,
+#main-transport-stop {
+  width: 4em;
+  height: 2em;
+  margin: 1em;
+}
+
+#bpm-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1em;
+  height: 5em;
+  font-size: 1.4em;
+}
+
+/* ========
+Modal Boxes
+======== */
+
+/* Add Instrument */
+
+#add-inst-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: .2em solid #1a191b;
+  border-radius: .4em;
+  z-index: 101;
+  background-color: #a19683;
+  width: 40%;
+  max-width: 50%;
+  height: 75%;
+  color: #1a191b;
+}
+
+#add-inst-modal.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Dropdown Menu */
+
+#add-type-menu,
+#add-file-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#add-type-menu .add-inst-type {
+  display: block;
+  position: relative;
+  float: left;
+  margin: 0.3em;
+}
+
+.add-inst-type ul {
+  display: none;
+}
+
+.add-inst-type ul li {
+  display: block;
+  text-decoration: none;
+  white-space: nowrap;
+  border: 0.05em solid #1a191b;
+}
+
+.add-inst-type:hover > ul {
+  display: block;
+  position: absolute;
+}
+
+.add-inst-type:hover li {
+  float: none;
+}
+
+#add-inst-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.5em;
+  text-transform: capitalize;
+}
+
+#add-inst-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.8em;
+}
+
+#add-type-menu,
+#selected-type,
+#add-file-menu {
+  margin-top: 0.8em;
+}
+
+.add-inst-type,
+.add-inst-subtype,
+.add-inst-file {
+  cursor: pointer;
+}
+
+.add-inst-subtype {
+  color: #e9d8bc;
+  background-color: #a19683;
+}
+
+#add-inst-close {
+  width: 2em;
+  height: 2em;
+  font-weight: 700;
+}
+
+/* ADD INSTRUMENT BUTTON */
+
+#add-inst-button {
+  width: 12em;
+  height: 6em;
+  margin-top: 1em;
+  margin-left: 1.2em;
+  font-family: 'Rock Salt', cursive;
+  font-size: 0.6em;
+}
+
+/* Overlays */
+
+#add-inst-overlay {
+  position: fixed;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(26, 25, 27, 0.4);
+  pointer-events: none;
+  z-index: 100;
+}
+
+#add-inst-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
