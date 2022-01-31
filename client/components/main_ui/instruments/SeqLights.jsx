@@ -2,8 +2,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import '../../../styles/main_ui/SeqLights.css';
-
 const SeqLights = () => {
   const instruments = useSelector((state) => state.instruments);
   const lights = [];

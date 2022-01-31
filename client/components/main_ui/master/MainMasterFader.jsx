@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import '../../../styles/Modal.css';
-
 const MainMasterFader = ({ volume }) => (
   <webaudio-knob
     onMouseOver={(e) => e.target.addEventListener('input', () => {
@@ -14,7 +12,7 @@ const MainMasterFader = ({ volume }) => (
     min="-64"
     max="0"
     value="-12"
-    diameter="64"
+    diameter="80"
   />
 );
 
