@@ -392,3 +392,27 @@ Modal Boxes
   opacity: 1;
   pointer-events: all;
 }
+
+/* ========
+Media Breakpoints
+======== */
+
+@media screen and (max-width: 1599px) {
+
+}
+
+@media screen and (max-width: 1199px) {
+
+}
+
+@media screen and (max-width: 992px) {
+
+}
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 576px) {
+
+}
